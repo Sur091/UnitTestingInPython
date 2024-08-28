@@ -27,6 +27,12 @@ class Soobin(unittest.TestCase):
     
     def test_name(self) -> None:
         self.assertEqual(self.get_name(), "Soobim")
+    
+    def test_fibbonacci(self, n: int) -> int:
+        a, b = 0, 1
+        for _ in range(n):
+            a, b = b, a+b
+        return a
 
     def test_primes(self) -> None:
         tests = [(10, 4), (100, 25), (1000, 168), (10_000, 1229), (100_000, 9592), (10**6, 78498), (10**7, 664579)]
