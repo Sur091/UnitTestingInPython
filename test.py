@@ -65,5 +65,31 @@ class SurajChild(Suraj):
     def get_name(self) -> str:
         return "Desktop"
 
+
+class Primes:
+    def get_name(self) -> str:
+        return "Primes are unpredictable"
+
+    def primes_below(self, n) -> int:
+        length = int(n-1) // 2
+        pri: list[bool] = [True] * length
+
+        for a in range(int(n**0.5)//2):
+            if pri[a]:
+                pri[2*a*a+6*a+3::2*a+3] = [False] * len(range(2*a*a+6*a+3, len(pri), 2*a+3))
+
+        return sum(pri) + 1
+
+
+
+class PrimesTesting(unittest.TestCase):
+    def test_primes(self):
+        tests: list[(int, int)] = [(10, 4), (100, 25), (1000, 168)]
+        
+        prime = Primes()
+        for (n, v) in tests:
+            self.assertEqual(v, prime.primes_below(n))
+
+
 if __name__ == '__main__':
     unittest.main()
